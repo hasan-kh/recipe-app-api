@@ -18,13 +18,10 @@ class Command(BaseCommand):
         self.stdout.write('Waiting for database...')
         db_up = False
         connection = connections['default']
-        counter = 1
         while db_up is False:
             try:
                 # Try to establish a connection to database
                 # This will raise an exception if the database is down
-                print('counter= ', counter)
-                counter += 1
                 connection.cursor()
                 db_up = True
             except (Psycopg2OpError, OperationalError):
